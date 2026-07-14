@@ -1,15 +1,162 @@
-from flask import Flask
-from flask_cors import CORS
+# ♻️ Textile Waste Management AI System
 
-app = Flask(__name__)
-CORS(app)
+An AI-powered web platform for efficient textile waste management, classification, and inventory tracking.
 
-@app.route("/")
-def home():
-    return {
-        "message": "Textile Waste Management Backend is Running!",
-        "status": "success"
-    }
+---
 
-if __name__ == "__main__":
-    app.run(debug=True)
+## 📌 Milestone 1 - Project Setup Completed
+
+### ✅ Objective
+
+Successfully set up the complete development environment for both the frontend and backend of the Textile Waste Management AI System.
+
+---
+
+## 🚀 Technologies Used
+
+### Frontend
+- React.js
+- Vite
+- React Router DOM
+- CSS
+
+### Backend
+- Python
+- Flask
+- Flask-CORS
+- Flask-SQLAlchemy
+- Flask-JWT-Extended
+- MySQL (Installation in Progress)
+
+### Version Control
+- Git
+- GitHub
+
+---
+
+## 📁 Project Structure
+
+```
+Textile-Waste-Management-Platform/
+│
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── package.json
+│   └── vite.config.js
+│
+├── backend/
+│   ├── database/
+│   ├── models/
+│   ├── routes/
+│   ├── uploads/
+│   ├── utils/
+│   ├── app.py
+│   ├── config.py
+│   └── requirements.txt
+│
+├── assets/
+├── docs/
+└── README.md
+```
+
+---
+
+## ✅ Frontend Progress
+
+- React project initialized using Vite.
+- React Router configured.
+- Navigation between pages implemented.
+- Responsive Login Page created.
+- Responsive Register Page created.
+- Project folder structure organized.
+
+---
+
+## ✅ Backend Progress
+
+- Flask project initialized.
+- Virtual Environment created.
+- Required Python packages installed.
+- Flask application configured.
+- Backend folder structure created.
+- Authentication routes prepared.
+- Database configuration file created.
+
+---
+
+## ✅ Git & GitHub
+
+- Local Git repository initialized.
+- .gitignore configured.
+- Project committed successfully.
+- Project pushed to GitHub.
+
+---
+
+## 📦 Installed Python Packages
+
+- Flask
+- Flask-CORS
+- Flask-SQLAlchemy
+- Flask-JWT-Extended
+- Flask-Bcrypt
+- python-dotenv
+- pymysql
+
+(Stored in `requirements.txt`.)
+
+---
+
+## 📸 Screens Completed
+
+- Login Page
+- Register Page
+- Flask Backend Running
+- GitHub Repository Created
+
+---
+
+## ⚙️ Current Status
+
+| Task | Status |
+|------|--------|
+| Frontend Setup | ✅ Completed |
+| Backend Setup | ✅ Completed |
+| Flask Running | ✅ Completed |
+| GitHub Setup | ✅ Completed |
+| Login Page | ✅ Completed |
+| Register Page | ✅ Completed |
+| Database Structure | ✅ Created |
+| MySQL Installation | 🔄 In Progress |
+
+---
+
+## 🎯 Milestone 2 (Upcoming)
+
+- Complete MySQL Configuration
+- Connect Flask with MySQL
+- Create Database
+- User Authentication API
+- Registration API
+- Login API
+- JWT Authentication
+- Inventory Module
+- Image Upload API
+
+---
+
+## 👩‍💻 Developer
+
+**Thanmayee Nadimpalli**
+
+B.Tech Student
+
+Shri Vishnu Engineering College for Women
+
+Project: Textile Waste Management AI System
