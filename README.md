@@ -148,7 +148,28 @@ Textile-Waste-Management-Platform/
 - JWT Authentication
 - Inventory Module
 - Image Upload API
+Dataset Name
 
+Fashion Product Images Dataset
+
+Purpose
+
+The dataset contains labeled fashion product images along with metadata describing each product.
+
+Main Features
+Product ID
+Gender
+Main Category
+Sub Category
+Article Type
+Base Colour
+Season
+Year
+Usage
+Product Name
+AI Use
+
+The dataset will be used to train a computer vision model for image classification and to identify textile products. The predicted information can later support textile waste categorization and recycling recommendations.
 ---
 
 ## 👩‍💻 Developer
