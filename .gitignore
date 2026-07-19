@@ -1,0 +1,43 @@
+# =========================
+# React / Node
+# =========================
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# =========================
+# Python
+# =========================
+backend/venv/
+venv/
+*.pyc
+*.pyo
+*.pyd
+**/__pycache__/
+
+# =========================
+# Environment Variables
+# =========================
+.env
+backend/.env
+
+# =========================
+# VS Code
+# =========================
+.vscode/
+
+# =========================
+# Dataset (Do NOT upload large datasets)
+# =========================
+dataset/fashion-dataset/
+
+# =========================
+# Operating System Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+*.log
