@@ -1,183 +1,134 @@
-# ♻️ Textile Waste Management AI System
+# 👕 Textile Waste Management AI System
 
-An AI-powered web platform for efficient textile waste management, classification, and inventory tracking.
-
----
-
-## 📌 Milestone 1 - Project Setup Completed
-
-### ✅ Objective
-
-Successfully set up the complete development environment for both the frontend and backend of the Textile Waste Management AI System.
+An AI-powered Textile Waste Management System that leverages Deep Learning and Machine Learning to classify textile waste and support sustainable waste management practices.
 
 ---
 
-## 🚀 Technologies Used
+## 📌 Project Overview
+
+The objective of this project is to develop an intelligent system capable of identifying different textile materials from images. The system aims to automate textile waste classification, enabling efficient recycling, reuse, and proper waste management.
+
+---
+
+## 🚀 Project Progress
+
+### ✅ Milestone 1 - Project Setup
+- Created project structure
+- Configured Flask backend
+- Initialized React frontend
+- GitHub repository setup
+- Environment configuration
+
+---
+
+### ✅ Milestone 2 - Data Preprocessing & Model Development (In Progress)
+
+#### Dataset Preparation
+- Downloaded and organized the Fashion Dataset
+- Loaded dataset using Pandas
+- Examined dataset structure
+- Selected required columns (`id`, `articleType`)
+- Created image paths for all records
+- Verified image availability
+- Removed missing image entries
+
+#### Data Preprocessing
+- Cleaned dataset
+- Encoded categorical labels using Label Encoding
+- Split dataset into:
+  - Training Set
+  - Validation Set
+  - Testing Set
+
+#### Image Augmentation
+Implemented image preprocessing using TensorFlow's `ImageDataGenerator`:
+- Rescaling
+- Rotation
+- Zoom
+- Horizontal Flip
+- Width Shift
+- Height Shift
+- Shear Transformation
+
+#### Deep Learning Model
+- Implemented Transfer Learning
+- Used **MobileNetV2** pretrained model
+- Added custom classification layers
+- Compiled the model using Adam Optimizer
+- Model training in progress
+
+---
+
+## 🛠️ Technologies Used
 
 ### Frontend
 - React.js
-- Vite
-- React Router DOM
-- CSS
 
 ### Backend
-- Python
 - Flask
-- Flask-CORS
-- Flask-SQLAlchemy
-- Flask-JWT-Extended
-- MySQL (Installation in Progress)
+- Python
 
-### Version Control
-- Git
-- GitHub
+### Machine Learning
+- TensorFlow
+- Keras
+- Scikit-learn
+- Pandas
+- NumPy
+
+### Visualization
+- Matplotlib
 
 ---
 
-## 📁 Project Structure
+## 📂 Project Structure
 
 ```
-Textile-Waste-Management-Platform/
-│
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── assets/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── package.json
-│   └── vite.config.js
+Textile-Waste-management-platform
 │
 ├── backend/
-│   ├── database/
-│   ├── models/
-│   ├── routes/
-│   ├── uploads/
-│   ├── utils/
-│   ├── app.py
-│   ├── config.py
-│   └── requirements.txt
-│
-├── assets/
+├── frontend/
+├── dataset/
+│   └── fashion-dataset/
+├── notebooks/
+├── model/
 ├── docs/
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
 ---
 
-## ✅ Frontend Progress
+## 📊 Current Status
 
-- React project initialized using Vite.
-- React Router configured.
-- Navigation between pages implemented.
-- Responsive Login Page created.
-- Responsive Register Page created.
-- Project folder structure organized.
-
----
-
-## ✅ Backend Progress
-
-- Flask project initialized.
-- Virtual Environment created.
-- Required Python packages installed.
-- Flask application configured.
-- Backend folder structure created.
-- Authentication routes prepared.
-- Database configuration file created.
+- ✔ Dataset preprocessing completed
+- ✔ Image augmentation completed
+- ✔ Data generators created
+- ✔ MobileNetV2 architecture implemented
+- ✔ Model compilation completed
+- 🔄 Model training in progress
+- ⏳ Model evaluation pending
+- ⏳ Backend integration pending
 
 ---
 
-## ✅ Git & GitHub
+## 🎯 Future Work
 
-- Local Git repository initialized.
-- .gitignore configured.
-- Project committed successfully.
-- Project pushed to GitHub.
-
----
-
-## 📦 Installed Python Packages
-
-- Flask
-- Flask-CORS
-- Flask-SQLAlchemy
-- Flask-JWT-Extended
-- Flask-Bcrypt
-- python-dotenv
-- pymysql
-
-(Stored in `requirements.txt`.)
+- Complete model training
+- Evaluate model performance
+- Save trained model
+- Integrate model with Flask backend
+- Build prediction API
+- Connect frontend with backend
+- Deploy the application
 
 ---
 
-## 📸 Screens Completed
+## 👩‍💻 Developed By
 
-- Login Page
-- Register Page
-- Flask Backend Running
-- GitHub Repository Created
+**Thanmayee**
 
----
-
-## ⚙️ Current Status
-
-| Task | Status |
-|------|--------|
-| Frontend Setup | ✅ Completed |
-| Backend Setup | ✅ Completed |
-| Flask Running | ✅ Completed |
-| GitHub Setup | ✅ Completed |
-| Login Page | ✅ Completed |
-| Register Page | ✅ Completed |
-| Database Structure | ✅ Created |
-| MySQL Installation | 🔄 In Progress |
-
----
-
-## 🎯 Milestone 2 (Upcoming)
-
-- Complete MySQL Configuration
-- Connect Flask with MySQL
-- Create Database
-- User Authentication API
-- Registration API
-- Login API
-- JWT Authentication
-- Inventory Module
-- Image Upload API
-Dataset Name
-
-Fashion Product Images Dataset
-
-Purpose
-
-The dataset contains labeled fashion product images along with metadata describing each product.
-
-Main Features
-Product ID
-Gender
-Main Category
-Sub Category
-Article Type
-Base Colour
-Season
-Year
-Usage
-Product Name
-AI Use
-
-The dataset will be used to train a computer vision model for image classification and to identify textile products. The predicted information can later support textile waste categorization and recycling recommendations.
----
-
-## 👩‍💻 Developer
-
-**Thanmayee Nadimpalli**
-
-B.Tech Student
+B.Tech - Artificial Intelligence & Machine Learning
 
 Shri Vishnu Engineering College for Women
 
-Project: Textile Waste Management AI System
+---
