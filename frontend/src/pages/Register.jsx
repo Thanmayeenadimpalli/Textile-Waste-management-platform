@@ -1,6 +1,57 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { registerUser } from "../services/authService";
 
 function Register() {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    role: "",
+  });
+
+  const [message, setMessage] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      setMessage("❌ Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await registerUser({
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+      });
+
+      setMessage("✅ " + response.data.message);
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
+
+    } catch (error) {
+      if (error.response) {
+        setMessage("❌ " + error.response.data.message);
+      } else {
+        setMessage("❌ Server not responding");
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-md">
@@ -13,9 +64,14 @@ function Register() {
           Register to access the Textile Waste Management Platform
         </p>
 
-        <form>
+        {message && (
+          <div className="mb-4 text-center font-semibold">
+            {message}
+          </div>
+        )}
 
-          {/* Full Name */}
+        <form onSubmit={handleRegister}>
+
           <div className="mb-4">
             <label className="block mb-2 font-medium">
               Full Name
@@ -23,12 +79,15 @@ function Register() {
 
             <input
               type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
               placeholder="Enter your full name"
-              className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border rounded-lg p-3"
+              required
             />
           </div>
 
-          {/* Email */}
           <div className="mb-4">
             <label className="block mb-2 font-medium">
               Email
@@ -36,12 +95,15 @@ function Register() {
 
             <input
               type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               placeholder="Enter your email"
-              className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border rounded-lg p-3"
+              required
             />
           </div>
 
-          {/* Password */}
           <div className="mb-4">
             <label className="block mb-2 font-medium">
               Password
@@ -49,12 +111,15 @@ function Register() {
 
             <input
               type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
               placeholder="Enter your password"
-              className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border rounded-lg p-3"
+              required
             />
           </div>
 
-          {/* Confirm Password */}
           <div className="mb-4">
             <label className="block mb-2 font-medium">
               Confirm Password
@@ -62,18 +127,26 @@ function Register() {
 
             <input
               type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
               placeholder="Confirm your password"
-              className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border rounded-lg p-3"
+              required
             />
           </div>
 
-          {/* Role */}
           <div className="mb-6">
             <label className="block mb-2 font-medium">
               Select Role
             </label>
 
-            <select className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <select
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              className="w-full border rounded-lg p-3"
+            >
               <option value="">Choose your role</option>
               <option>Recycling Facility Operator</option>
               <option>Sustainability Manager</option>
@@ -82,7 +155,6 @@ function Register() {
             </select>
           </div>
 
-          {/* Register Button */}
           <button
             type="submit"
             className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition"
@@ -95,7 +167,7 @@ function Register() {
         <p className="text-center mt-6">
           Already have an account?
           <Link
-            to="/"
+            to="/login"
             className="text-blue-600 ml-2 hover:underline"
           >
             Login
