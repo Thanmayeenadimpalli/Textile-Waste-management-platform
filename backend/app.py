@@ -6,6 +6,13 @@ from config import Config
 from routes.auth import auth
 from models.inventory import Inventory
 from routes.inventory import inventory
+from routes.predict import predict
+from models.prediction import Prediction
+from routes.history import history
+from routes.dashboard import dashboard
+
+
+
 app = Flask(__name__)
 app.config.from_object(Config)
 
@@ -14,6 +21,10 @@ db.init_app(app)
 CORS(app)
 app.register_blueprint(auth)
 app.register_blueprint(inventory)
+app.register_blueprint(predict)
+app.register_blueprint(history)
+app.register_blueprint(dashboard)
+
 
 @app.route("/")
 def home():

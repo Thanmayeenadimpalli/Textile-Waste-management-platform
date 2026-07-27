@@ -1,11 +1,17 @@
-import { useState } from "react";
-import { addInventory } from "../../services/inventoryService";
+import { useState, useEffect } from "react";
+import {
+  addInventory,
+  updateInventory,
+} from "../../services/inventoryService";
+
 
 function AddInventoryModal({
   isOpen,
   onClose,
   onInventoryAdded,
+  editData,
 }) {
+
     const [formData, setFormData] = useState({
   waste_batch_id: "",
   fabric_type: "",
@@ -15,6 +21,32 @@ function AddInventoryModal({
   condition: "",
   collection_date: "",
 });
+  useEffect(() => {
+  if (editData) {
+    setFormData({
+      waste_batch_id: editData.waste_batch_id,
+      fabric_type: editData.fabric_type,
+      source: editData.source,
+      quantity: editData.quantity,
+      color: editData.color,
+      condition: editData.condition,
+      collection_date: editData.collection_date,
+    });
+  } else {
+    setFormData({
+      waste_batch_id: "",
+      fabric_type: "",
+      source: "",
+      quantity: "",
+      color: "",
+      condition: "",
+      collection_date: "",
+    });
+  }
+}, [editData]);
+
+
+
 const handleChange = (e) => {
   setFormData({
     ...formData,
@@ -25,27 +57,33 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-    await addInventory(formData);
+    if (editData) {
+      await updateInventory(editData.id, formData);
 
-alert("Inventory Added Successfully!");
+      alert("Inventory Updated Successfully!");
+    } else {
+      await addInventory(formData);
 
-onInventoryAdded();
+      alert("Inventory Added Successfully!");
+    }
 
-onClose();
+    onInventoryAdded();
 
-// Clear the form
-setFormData({
-  waste_batch_id: "",
-  fabric_type: "",
-  source: "",
-  quantity: "",
-  color: "",
-  condition: "",
-  collection_date: "",
-});
+    onClose();
+
+    setFormData({
+      waste_batch_id: "",
+      fabric_type: "",
+      source: "",
+      quantity: "",
+      color: "",
+      condition: "",
+      collection_date: "",
+    });
+
   } catch (error) {
     console.error(error);
-    alert("Failed to add inventory.");
+    alert("Operation Failed!");
   }
 };
   if (!isOpen) return null;
@@ -56,8 +94,8 @@ setFormData({
       <div className="bg-white w-full max-w-2xl rounded-xl p-6">
 
         <h2 className="text-2xl font-bold mb-6">
-          Add Textile Waste
-        </h2>
+  {editData ? "Edit Textile Waste" : "Add Textile Waste"}
+</h2>
 
         <form
   onSubmit={handleSubmit}
@@ -140,7 +178,7 @@ setFormData({
   type="submit"
   className="px-5 py-3 bg-blue-600 text-white rounded-lg"
 >
-  Save
+  {editData ? "Update" : "Save"}
 </button>
 
           </div>
