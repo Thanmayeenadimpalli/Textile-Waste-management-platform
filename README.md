@@ -1,7 +1,7 @@
 # 🧵 AI Textile Waste Management System
 
 <p align="center">
-  <img src="media/dashboard.png" alt="Dashboard" width="100%">
+  <img src="C:\Users\thanm\OneDrive\Pictures\Screenshots\Screenshot 2026-07-27 205256.png" alt="Dashboard" width="100%">
 </p>
 
 <p align="center">
@@ -226,13 +226,13 @@ AI-Textile-Waste-Management-System
 ```
 
 ---
+## 🚀 Installation
 
-# 🚀 Installation
-
-## Clone Repository
+### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/AI-Textile-Waste-Management-System.git
+git clone https://github.com/Thanmayeenadimpalli/Textile-Waste-management-platform.git
+cd Textile-Waste-management-platform
 ```
 
 ---
@@ -554,18 +554,6 @@ B.Tech – Computer Science & Engineering
 Shri Vishnu Engineering College for Women
 
 ---
-
-# 🙏 Acknowledgements
-
-Special thanks to:
-
-- Faculty Mentors
-- Shri Vishnu Engineering College for Women
-- TensorFlow Community
-- React Community
-- Flask Community
-- PostgreSQL Community
-- Open Source Contributors
 
 ---
 
