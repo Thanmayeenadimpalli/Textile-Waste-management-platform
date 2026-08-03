@@ -7,6 +7,7 @@ from tensorflow.keras.preprocessing import image
 from models import db
 from models.prediction import Prediction
 from ai.recommendations import RECOMMENDATIONS
+from ai.sustainability import SUSTAINABILITY_DATA
 
 predict = Blueprint("predict", __name__)
 
@@ -16,7 +17,7 @@ LABEL_PATH = os.path.join("ai", "label_encoder.pkl")
 
 model = tf.keras.models.load_model(MODEL_PATH)
 label_encoder = joblib.load(LABEL_PATH)
-
+sustainability = SUSTAINABILITY_DATA.get(label)
 
 def predict_single_image(img_path):
 
@@ -59,6 +60,7 @@ def predict_images():
         file.save(file_path)
 
         label, confidence = predict_single_image(file_path)
+
         recommendation = RECOMMENDATIONS.get(
     label,
     {
