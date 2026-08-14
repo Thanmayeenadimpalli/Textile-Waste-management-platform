@@ -27,10 +27,10 @@ backend/.env
 .vscode/
 
 # =========================
-# Dataset (Do NOT upload large datasets)
+# Dataset
 # =========================
 dataset/
-
+archive (3)/Dataset/
 
 # =========================
 # Operating System Files
@@ -42,6 +42,3 @@ Thumbs.db
 # Logs
 # =========================
 *.log
-
-
-archive (3)/Dataset/
