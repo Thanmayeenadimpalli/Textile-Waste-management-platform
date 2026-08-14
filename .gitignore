@@ -29,7 +29,17 @@ backend/.env
 # =========================
 # Dataset (Do NOT upload large datasets)
 # =========================
-dataset/fashion-dataset/
+#dataset/fashion-dataset/
+dataset/Broken stitch/
+dataset/detect free/
+dataset/hole/
+dataset/horizontal/
+dataset/lines/
+dataset/Needle mark/
+datset/Pinched fabric/
+dataset/stain/
+dataset/vertical/
+
 
 # =========================
 # Operating System Files
@@ -41,3 +51,4 @@ Thumbs.db
 # Logs
 # =========================
 *.log
+
