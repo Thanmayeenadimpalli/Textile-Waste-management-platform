@@ -2,148 +2,326 @@ import { useState } from "react";
 import Sidebar from "../components/layout/Sidebar";
 import Header from "../components/layout/Header";
 
-function Profile() {
-  const [user] = useState({
-    name: "Thanmayee",
-    email: "thanmayee@example.com",
-    role: "Administrator",
-    department: "Textile Waste Management",
-    joined: "July 2026",
-    phone: "+91 XXXXX XXXXX",
-  });
+function Settings() {
+    const [notificationsEnabled, setNotificationsEnabled] =
+        useState(true);
 
-  return (
-    <div className="flex bg-gray-100 min-h-screen">
-      <Sidebar />
+    const [settings, setSettings] = useState({
+        inventoryAlerts: true,
+        recyclingOpportunities: true,
+        sustainabilityMilestones: true,
+        wasteCollectionAlerts: true,
+        platformAnnouncements: true,
+    });
 
-      <div className="ml-64 flex-1 p-6">
-        <Header />
+    const handleToggle = (key) => {
+        setSettings((previous) => ({
+            ...previous,
+            [key]: !previous[key],
+        }));
+    };
 
-        <h1 className="text-3xl font-bold mb-6">
-          My Profile
-        </h1>
+    const handleMasterToggle = () => {
+        setNotificationsEnabled(
+            (previous) => !previous
+        );
+    };
 
-        <div className="bg-white rounded-xl shadow-lg p-8">
+    return (
+        <div className="flex bg-gray-100 min-h-screen">
 
-          {/* Profile Avatar */}
-          <div className="flex flex-col items-center">
+            {/* Sidebar */}
 
-            <div className="w-28 h-28 rounded-full bg-blue-600 flex items-center justify-center text-white text-4xl font-bold">
-              {user.name.charAt(0)}
+            <Sidebar />
+
+
+            {/* Main Content */}
+
+            <div className="ml-64 flex-1 p-6">
+
+                <Header />
+
+
+                <div className="mt-6">
+
+                    <h1 className="text-3xl font-bold mb-2">
+                        ⚙️ Settings
+                    </h1>
+
+                    <p className="text-gray-600 mb-6">
+                        Manage your notification and alert preferences.
+                    </p>
+
+
+                    {/* =================================================
+                        NOTIFICATION SETTINGS
+                    ================================================= */}
+
+                    <div className="bg-white rounded-xl shadow-md p-8">
+
+                        <h2 className="text-2xl font-bold mb-2">
+                            🔔 Notification Settings
+                        </h2>
+
+                        <p className="text-gray-500 mb-8">
+                            Choose which notifications and alerts
+                            you want to receive.
+                        </p>
+
+
+                        {/* =================================================
+                            MASTER NOTIFICATION SWITCH
+                        ================================================= */}
+
+                        <div className="border-b pb-6 mb-6">
+
+                            <div className="flex items-center justify-between">
+
+                                <div>
+
+                                    <h3 className="text-lg font-semibold">
+                                        Enable Notifications
+                                    </h3>
+
+                                    <p className="text-gray-500 text-sm mt-1">
+                                        Turn all system notifications
+                                        on or off.
+                                    </p>
+
+                                </div>
+
+
+                                <button
+                                    onClick={handleMasterToggle}
+                                    className={`relative inline-flex h-7 w-14 items-center rounded-full transition ${
+                                        notificationsEnabled
+                                            ? "bg-green-600"
+                                            : "bg-gray-400"
+                                    }`}
+                                    aria-label="Enable Notifications"
+                                >
+
+                                    <span
+                                        className={`inline-block h-5 w-5 transform rounded-full bg-white transition ${
+                                            notificationsEnabled
+                                                ? "translate-x-8"
+                                                : "translate-x-1"
+                                        }`}
+                                    />
+
+                                </button>
+
+                            </div>
+
+                            <p
+                                className={`mt-3 text-sm font-medium ${
+                                    notificationsEnabled
+                                        ? "text-green-600"
+                                        : "text-gray-500"
+                                }`}
+                            >
+                                {notificationsEnabled
+                                    ? "Notifications are enabled"
+                                    : "Notifications are disabled"}
+                            </p>
+
+                        </div>
+
+
+                        {/* =================================================
+                            INDIVIDUAL NOTIFICATIONS
+                        ================================================= */}
+
+                        <div className="space-y-6">
+
+                            {/* Inventory Alerts */}
+
+                            <NotificationSetting
+                                title="📦 Inventory Alerts"
+                                description="Receive alerts about inventory levels, damaged batches, and important inventory changes."
+                                enabled={
+                                    settings.inventoryAlerts
+                                }
+                                disabled={
+                                    !notificationsEnabled
+                                }
+                                onToggle={() =>
+                                    handleToggle(
+                                        "inventoryAlerts"
+                                    )
+                                }
+                            />
+
+
+                            {/* Recycling Opportunities */}
+
+                            <NotificationSetting
+                                title="♻️ Recycling Opportunities"
+                                description="Receive recommendations when textile materials have good reuse or recycling potential."
+                                enabled={
+                                    settings.recyclingOpportunities
+                                }
+                                disabled={
+                                    !notificationsEnabled
+                                }
+                                onToggle={() =>
+                                    handleToggle(
+                                        "recyclingOpportunities"
+                                    )
+                                }
+                            />
+
+
+                            {/* Sustainability Milestones */}
+
+                            <NotificationSetting
+                                title="🌱 Sustainability Milestones"
+                                description="Receive alerts when your textile recovery activities reach sustainability milestones."
+                                enabled={
+                                    settings.sustainabilityMilestones
+                                }
+                                disabled={
+                                    !notificationsEnabled
+                                }
+                                onToggle={() =>
+                                    handleToggle(
+                                        "sustainabilityMilestones"
+                                    )
+                                }
+                            />
+
+
+                            {/* Waste Collection Alerts */}
+
+                            <NotificationSetting
+                                title="🚛 Waste Collection Alerts"
+                                description="Receive notifications about textile waste collection and processing activities."
+                                enabled={
+                                    settings.wasteCollectionAlerts
+                                }
+                                disabled={
+                                    !notificationsEnabled
+                                }
+                                onToggle={() =>
+                                    handleToggle(
+                                        "wasteCollectionAlerts"
+                                    )
+                                }
+                            />
+
+
+                            {/* Platform Announcements */}
+
+                            <NotificationSetting
+                                title="📢 Platform Announcements"
+                                description="Receive important announcements and updates about the Textile Waste Management AI System."
+                                enabled={
+                                    settings.platformAnnouncements
+                                }
+                                disabled={
+                                    !notificationsEnabled
+                                }
+                                onToggle={() =>
+                                    handleToggle(
+                                        "platformAnnouncements"
+                                    )
+                                }
+                            />
+
+                        </div>
+
+                    </div>
+
+
+                    {/* =================================================
+                        INFORMATION CARD
+                    ================================================= */}
+
+                    <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mt-6">
+
+                        <h3 className="font-semibold text-blue-800 mb-2">
+                            💡 About Notifications
+                        </h3>
+
+                        <p className="text-blue-700 text-sm">
+                            Notifications help you stay informed about
+                            textile predictions, recycling opportunities,
+                            sustainability results, inventory activity,
+                            and important platform updates.
+                        </p>
+
+                    </div>
+
+                </div>
+
             </div>
-
-            <h2 className="text-2xl font-semibold mt-4">
-              {user.name}
-            </h2>
-
-            <p className="text-gray-500">
-              {user.role}
-            </p>
-
-          </div>
-
-          {/* User Details */}
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
-
-            <div>
-              <label className="text-gray-600 font-medium">
-                Full Name
-              </label>
-
-              <input
-                type="text"
-                value={user.name}
-                readOnly
-                className="w-full mt-2 border rounded-lg p-3 bg-gray-100"
-              />
-            </div>
-
-            <div>
-              <label className="text-gray-600 font-medium">
-                Email
-              </label>
-
-              <input
-                type="email"
-                value={user.email}
-                readOnly
-                className="w-full mt-2 border rounded-lg p-3 bg-gray-100"
-              />
-            </div>
-
-            <div>
-              <label className="text-gray-600 font-medium">
-                Phone
-              </label>
-
-              <input
-                type="text"
-                value={user.phone}
-                readOnly
-                className="w-full mt-2 border rounded-lg p-3 bg-gray-100"
-              />
-            </div>
-
-            <div>
-              <label className="text-gray-600 font-medium">
-                Department
-              </label>
-
-              <input
-                type="text"
-                value={user.department}
-                readOnly
-                className="w-full mt-2 border rounded-lg p-3 bg-gray-100"
-              />
-            </div>
-
-            <div>
-              <label className="text-gray-600 font-medium">
-                Role
-              </label>
-
-              <input
-                type="text"
-                value={user.role}
-                readOnly
-                className="w-full mt-2 border rounded-lg p-3 bg-gray-100"
-              />
-            </div>
-
-            <div>
-              <label className="text-gray-600 font-medium">
-                Member Since
-              </label>
-
-              <input
-                type="text"
-                value={user.joined}
-                readOnly
-                className="w-full mt-2 border rounded-lg p-3 bg-gray-100"
-              />
-            </div>
-
-          </div>
-
-          {/* Action Buttons */}
-
-          <div className="flex gap-4 mt-8">
-
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">
-              Edit Profile
-            </button>
-
-            <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg">
-              Change Password
-            </button>
-
-          </div>
 
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
-export default Profile;
+
+/* =========================================================
+   REUSABLE NOTIFICATION SETTING COMPONENT
+========================================================= */
+
+function NotificationSetting({
+    title,
+    description,
+    enabled,
+    disabled,
+    onToggle,
+}) {
+    return (
+        <div
+            className={`flex items-center justify-between gap-6 p-4 rounded-lg border ${
+                disabled
+                    ? "bg-gray-100 opacity-60"
+                    : "bg-white"
+            }`}
+        >
+
+            <div className="flex-1">
+
+                <h3 className="font-semibold text-lg">
+                    {title}
+                </h3>
+
+                <p className="text-gray-500 text-sm mt-1">
+                    {description}
+                </p>
+
+            </div>
+
+
+            <button
+                onClick={onToggle}
+                disabled={disabled}
+                className={`relative flex-shrink-0 inline-flex h-7 w-14 items-center rounded-full transition ${
+                    enabled && !disabled
+                        ? "bg-green-600"
+                        : "bg-gray-400"
+                } ${
+                    disabled
+                        ? "cursor-not-allowed"
+                        : "cursor-pointer"
+                }`}
+                aria-label={title}
+            >
+
+                <span
+                    className={`inline-block h-5 w-5 transform rounded-full bg-white transition ${
+                        enabled && !disabled
+                            ? "translate-x-8"
+                            : "translate-x-1"
+                    }`}
+                />
+
+            </button>
+
+        </div>
+    );
+}
+
+
+export default Settings;

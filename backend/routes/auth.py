@@ -37,16 +37,23 @@ def login():
     email = data.get("email")
     password = data.get("password")
 
-    user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(
+        email=email
+    ).first()
 
     if user is None:
-        return jsonify({"message": "User not found"}), 404
+        return jsonify({
+            "message": "User not found"
+        }), 404
 
     if user.password != password:
-        return jsonify({"message": "Invalid Password"}), 401
+        return jsonify({
+            "message": "Invalid Password"
+        }), 401
 
     return jsonify({
         "message": "Login Successful",
+        "id": user.id,
         "username": user.username,
         "email": user.email
     }), 200

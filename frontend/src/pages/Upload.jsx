@@ -2,8 +2,12 @@ import { useState } from "react";
 import Sidebar from "../components/layout/Sidebar";
 import Header from "../components/layout/Header";
 import { predictImages } from "../services/predictService";
-import { generatePDF } from "../utils/pdfReport";
-import toast from "react-hot-toast";
+import {
+    generatePDF,
+    generatePDFBase64
+} from "../utils/pdfReport";
+
+import { emailReport } from "../services/reportService";import toast from "react-hot-toast";
 
 function Upload() {
     const [selectedImages, setSelectedImages] = useState([]);
@@ -77,7 +81,64 @@ function Upload() {
             setLoading(false);
         }
     };
+    const handleEmailReport = async () => {
 
+    if (results.length === 0) {
+        toast.error(
+            "Generate a prediction report first."
+        );
+        return;
+    }
+
+    try {
+
+        setLoading(true);
+
+        const user = JSON.parse(
+            localStorage.getItem("user")
+        );
+
+        if (!user?.email) {
+
+            toast.error(
+                "Please login again. User email was not found."
+            );
+
+            return;
+        }
+
+        const pdfBase64 =
+            generatePDFBase64(results);
+
+        await emailReport({
+            pdfBase64,
+            recipientEmail: user.email,
+            filename:
+                "Textile_Prediction_Report.pdf"
+        });
+
+        toast.success(
+            `Report sent to ${user.email}`
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Email report error:",
+            error
+        );
+
+        toast.error(
+            error.response?.data?.message ||
+            "Failed to email the report."
+        );
+
+    } finally {
+
+        setLoading(false);
+
+    }
+};
     return (
         <div className="flex min-h-screen">
 
@@ -542,19 +603,35 @@ function Upload() {
 
                             {/* PDF */}
 
-                            <div className="mt-6">
+                            <div className="mt-6 flex flex-wrap gap-4">
 
-                                <button
-                                    onClick={() =>
-                                        generatePDF(results)
-                                    }
-                                    disabled={loading}
-                                    className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg"
-                                >
-                                    📄 Download PDF Report
-                                </button>
+    <button
+        onClick={() =>
+            generatePDF(results)
+        }
+        disabled={loading}
+        className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg"
+    >
+        📄 Download PDF Report
+    </button>
 
-                            </div>
+
+    <button
+        onClick={handleEmailReport}
+        disabled={loading}
+        className={`px-6 py-3 rounded-lg text-white ${
+            loading
+                ? "bg-gray-500 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700"
+        }`}
+    >
+        {loading
+            ? "📨 Sending..."
+            : "📧 Email Report"
+        }
+    </button>
+
+</div>
 
                         </div>
 
