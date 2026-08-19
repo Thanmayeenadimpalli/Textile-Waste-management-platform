@@ -369,7 +369,7 @@ Examples include:
 ---
 
 ## 📂 Project Structure
-
+```text
 Textile-Waste-management-platform/
 │
 ├── backend/
