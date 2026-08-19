@@ -456,7 +456,7 @@ Textile-Waste-management-platform/
 ---
 
 ## 🧠 AI Model
-
+```text
 The AI component uses a trained TensorFlow/Keras model for textile image classification.
 
 The prediction workflow is:
@@ -491,7 +491,7 @@ The project also contains:
 ## 📊 Dataset
 
 The project uses a textile defect image dataset organized into nine classes.
-
+```text
 dataset/
 │
 ├── Broken stitch/
@@ -548,7 +548,7 @@ Circularity Score    : 84.55 / 100
 
 Recovery Category    : High Recovery Potential
 
----
+
 
 ## 🧪 API Testing
 
@@ -562,6 +562,7 @@ The current API test execution produced:
 TEXTILE WASTE MANAGEMENT API TESTING
 ============================================================
 
+```text
 PASS: Home API
 PASS: Dashboard API
 PASS: Inventory GET API
@@ -649,12 +650,12 @@ This verifies the major backend API modules.
 |--------|----------|-------------|
 | POST | `/reports/email` | Email generated report |
 
----
+
 
 ## 🚀 Installation & Setup
 
 ### 1. Clone the Repository
-
+```text
     git clone https://github.com/Thanmayeenadimpalli/Textile-Waste-management-platform.git
 
     cd Textile-Waste-management-platform
@@ -664,27 +665,28 @@ This verifies the major backend API modules.
 ## 🐍 Backend Setup
 
 Open a terminal:
+```text
 
     cd backend
-
+---
 Create a virtual environment:
-
+```text
     python -m venv venv
-
+---
 Activate the virtual environment on Windows:
-
+```text
     venv\Scripts\activate
 
 Install dependencies:
-
+```text
     pip install -r requirements.txt
 
 Start the Flask backend:
-
+```text
     python app.py
 
 Backend URL:
-
+```text
     http://127.0.0.1:5000
 
 ---
@@ -692,15 +694,15 @@ Backend URL:
 ## ⚛️ Frontend Setup
 
 Open another terminal:
-
+```text
     cd frontend
 
 Install dependencies:
-
+```text
     npm install
 
 Start the Vite development server:
-
+```text
     npm run dev
 
 Open the local URL displayed by Vite.
